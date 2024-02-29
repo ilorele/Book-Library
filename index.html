@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="content-container">
+        <div class="books-table-container">
+            <table class="books-container">
+                <thead>My Book Library:</thead>
+                <tr class="header">
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Pages</th>
+                    <th>Status</th>
+                </tr>
+            </table>
+        </div>
+        <button class="new-book-btn">NEW BOOK</button>
+        <form action="" class="new-book-form" name="new-book-form">
+            <div class="input-field">
+                <label for="book_title">Title:</label>
+                <input type="text" name="book_title" id="book_title" required>
+            </div>
+            <div class="input-field">
+                <label for="book_author">Author:</label>
+                <input type="text" name="book_author" id="book_author" required>
+            </div>
+            <div class="input-field">
+                <label for="book_num_of_pages">Number of pages:</label>
+                <input type="number" name="book_num_of_pages" id="book_num_of_pages">
+            </div>
+            <div class="input-field">
+                <span>Status: </span>
+                <span class="radio-input">
+                    <label for="status-read">read</label>
+                    <input type="radio" name="status" id="status-read" value="read" checked>
+                    <label for="status-unread">unread</label>
+                    <input type="radio" name="status" id="status-unread" value="unread">
+                </span>
+            </div>
+            <div class="submit-btn-container">
+                <button class="submit-form-btn">Add a book</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="./javascript.js"></script>
+</body>
+</html>
