@@ -20,6 +20,7 @@ body {
 
 .books-table-container {
     width: 700px;
+    margin-bottom: 40px;
 }
 
 .books-container {
@@ -48,8 +49,6 @@ td {
 .new-book-btn {
     background-color: lightblue;
     justify-self: center;
-    margin-top: 40px;
-    margin-bottom: 20px;
     padding: 10px 30px;
     border-radius: 5px;
 }
@@ -81,4 +80,8 @@ td {
 .submit-form-btn {
     padding: 10px 30px;
     border-radius: 5px;
+}
+
+.hidden {
+    display: none;
 }

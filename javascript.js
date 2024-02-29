@@ -44,12 +44,17 @@ const newBookBtnEl = document.querySelector(".new-book-btn");
 const submitFormEl = document.forms["new-book-form"];
 
 
+function toggleDisplay(el) {
+  el.classList.toggle("hidden")
+}
+
 function logNewBook() {
     displayBookInfo(myLibrary[myLibrary.length-1]);
 }
 
 newBookBtnEl.addEventListener("click", function() {
-    console.log("dupa");
+    toggleDisplay(newBookBtnEl);
+    toggleDisplay(submitFormEl);
 });
 
 submitFormEl.addEventListener("submit", function(e) {  
@@ -62,4 +67,7 @@ submitFormEl.addEventListener("submit", function(e) {
     const submittedBook = new Book(newTitle, newAuthor, newPages, newStatus);
     myLibrary.push(submittedBook);
     logNewBook();
+    toggleDisplay(newBookBtnEl);
+    toggleDisplay(submitFormEl);
+    submitFormEl.reset();
 });
