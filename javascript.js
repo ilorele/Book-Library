@@ -39,3 +39,27 @@ addBookToLibrary(witcher);
 addBookToLibrary(lotr);
 
 logBooks();
+
+const newBookBtnEl = document.querySelector(".new-book-btn");
+const submitFormEl = document.forms["new-book-form"];
+
+
+function logNewBook() {
+    displayBookInfo(myLibrary[myLibrary.length-1]);
+}
+
+newBookBtnEl.addEventListener("click", function() {
+    console.log("dupa");
+});
+
+submitFormEl.addEventListener("submit", function(e) {  
+    e.preventDefault();
+    const newTitle = document.forms["new-book-form"].book_title.value;
+    const newAuthor = document.forms["new-book-form"].book_author.value;
+    const newPages = document.forms["new-book-form"].book_num_of_pages.value;
+    const newStatus = document.forms["new-book-form"].status.value;
+
+    const submittedBook = new Book(newTitle, newAuthor, newPages, newStatus);
+    myLibrary.push(submittedBook);
+    logNewBook();
+});
