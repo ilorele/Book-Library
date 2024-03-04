@@ -85,3 +85,8 @@ td {
 .hidden {
     display: none;
 }
+
+.remove-book-btn {
+    background-color: hsl(0, 75%, 65%);
+    padding: 0 5px;
+}

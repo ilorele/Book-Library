@@ -1,33 +1,57 @@
 const booksContainerEl = document.querySelector(".books-container");
 
-const myLibrary = [];
+let myLibrary = [];
 
-function Book(title, author, numOfPages, isRead) {
+function Book(title, author, numOfPages, status) {
     this.title = title;
     this.author = author;
     this.numOfPages = numOfPages;;
-    this.isRead = isRead;
+    this.status = status;
 }
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
+function createRmBtn(bookRowElement, bookTitle) {
+    const rmBtnContainer = document.createElement("td");
+
+    const rmBtnEl = document.createElement("button");
+    rmBtnEl.textContent = "remove";
+    rmBtnEl.classList.add("remove-book-btn");
+
+    rmBtnContainer.appendChild(rmBtnEl);
+    bookRowElement.appendChild(rmBtnContainer);
+
+    rmBtnEl.addEventListener("click", function() {
+        removeBook(bookTitle);
+    });
+}
+
 function displayBookInfo(book) {
     const bookRowElement = document.createElement("tr");
-    bookRowElement.classList.add("single-book")
+    bookRowElement.dataset.bookName = book.title;
     for(const prop in book) {
         const cell  = document.createElement("td");
         cell.textContent = book[prop];
         bookRowElement.appendChild(cell);
     }
+    createRmBtn(bookRowElement, book.title);
     booksContainerEl.appendChild(bookRowElement);
 }
 
-function logBooks() {
+function createBooksTable() {
     for (const book of myLibrary) {
         displayBookInfo(book);
     }
+}
+
+function removeBook(bookTitle) {
+    const newLibrary = myLibrary.filter((book) => book.title !== bookTitle);
+    myLibrary = newLibrary;
+
+    const elToRemove = document.querySelector(`[data-book-name="${bookTitle}"]`);
+    elToRemove.remove();
 }
 
 const harryPotter = new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 331, "read");
@@ -38,7 +62,7 @@ addBookToLibrary(harryPotter);
 addBookToLibrary(witcher);
 addBookToLibrary(lotr);
 
-logBooks();
+createBooksTable();
 
 const newBookBtnEl = document.querySelector(".new-book-btn");
 const submitFormEl = document.forms["new-book-form"];
@@ -71,3 +95,5 @@ submitFormEl.addEventListener("submit", function(e) {
     toggleDisplay(submitFormEl);
     submitFormEl.reset();
 });
+
+// DATA ATTRIBUTE!!!
