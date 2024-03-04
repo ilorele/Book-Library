@@ -34,6 +34,11 @@ function displayBookInfo(book) {
     for(const prop in book) {
         const cell  = document.createElement("td");
         cell.textContent = book[prop];
+
+        if (prop === "status") {
+            cell.classList.add("read-status");
+        }
+
         bookRowElement.appendChild(cell);
     }
     createRmBtn(bookRowElement, book.title);
@@ -94,6 +99,32 @@ submitFormEl.addEventListener("submit", function(e) {
     toggleDisplay(newBookBtnEl);
     toggleDisplay(submitFormEl);
     submitFormEl.reset();
+    getReadStatusELs();
 });
 
-// DATA ATTRIBUTE!!!
+function getReadStatusELs() {
+    let readStatusEls = document.querySelectorAll(".read-status");
+
+    for (let i = 0; i < readStatusEls.length; i++) {
+        removeReadStatusChange(readStatusEls[i]);
+        addReadStatusChange(readStatusEls[i]);
+    }
+}
+
+function removeReadStatusChange(bookStatus) {
+    bookStatus.removeEventListener("click", changeReadStatusText);
+}
+
+function addReadStatusChange(bookStatus) {
+    bookStatus.addEventListener("click", changeReadStatusText);
+}
+
+function changeReadStatusText(e) {
+    if (e.target.textContent === "read") {
+        e.target.textContent = "unread";
+    } else if (e.target.textContent === "unread") {
+        e.target.textContent = "read";
+    }
+}
+
+getReadStatusELs();
